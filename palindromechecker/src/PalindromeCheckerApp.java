@@ -1,48 +1,56 @@
 import java.util.Scanner;
 
 public class PalindromeCheckerApp {
-/**
- * ============================================================
- * MAIN CLASS – UseCase3PalindromeCheckerApp
- * ============================================================
- *
- * Use Case 3: Reverse String Based Palindrome Check
- *
- * Description:
- * This class checks whether a string is a palindrome
- * by reversing the string and comparing it with
- * the original value.
- *
- * At this stage, the application:
- * - Iterates the string in reverse order
- * - Builds a reversed version
- * - Compares original and reversed strings
- * - Displays the validation result
- *
- * This introduces transformation-based validation.
- *
- * @author Developer
- * @version 3.0
- */
+    /**
+     * ============================================================
+     * MAIN CLASS – UseCase4PalindromeCheckerApp
+     * ============================================================
+     *
+     * Use Case 4: Character Array Based Validation
+     *
+     * Description:
+     * This class validates a palindrome by converting
+     * the string into a character array and comparing
+     * characters using the two-pointer technique.
+     *
+     * At this stage, the application:
+     * - Accepts input from the user
+     * - Converts string to char array
+     * - Uses start and end pointers
+     * - Compares characters efficiently
+     * - Displays the result
+     *
+     * This reduces extra memory usage.
+     *
+     * @author Developer
+     * @version 4.0
+     */
 
 
         public static void main(String[] args) {
 
             Scanner sc = new Scanner(System.in);
 
-            System.out.print("Input text: ");
+            System.out.print("Input : ");
             String input = sc.nextLine();
 
-            String reversed = "";
+            char[] chars = input.toCharArray();
 
-            // Iterate from the last character to the first
-            for (int i = input.length() - 1; i >= 0; i--) {
-                reversed += input.charAt(i);
+            int start = 0;
+            int end = chars.length - 1;
+
+            boolean isPalindrome = true;
+
+            while (start < end) {
+                if (chars[start] != chars[end]) {
+                    isPalindrome = false;
+                    break;
+                }
+                start++;
+                end--;
             }
 
-            boolean isPalindrome = input.equals(reversed);
-
-            System.out.println("Is it a Palindrome? : " + isPalindrome);
+            System.out.println("Is Palindrome? : " + isPalindrome);
 
             sc.close();
         }
