@@ -5,62 +5,52 @@ import java.util.Stack;
 
 public class PalindromeCheckerApp {
     /**
-     * ============================================================
-     * MAIN CLASS – UseCase6PalindromeCheckerApp
-     * ============================================================
+     * ==========================================================
+     * MAIN CLASS - UseCase9RecursivePalindrome
+     * ==========================================================
      *
-     * Use Case 6: Queue + Stack Fairness Check
+     * Use Case 9: Recursive Palindrome Checker
      *
      * Description:
-     * This class demonstrates palindrome validation using
-     * two different data structures:
+     * This class validates a palindrome using recursion.
      *
-     * - Queue (FIFO - First In First Out)
-     * - Stack (LIFO - Last In First Out)
+     * Characters are compared from the outer positions
+     * moving inward using recursive calls.
      *
-     * Characters are inserted into both structures and then
-     * compared by removing from the front of the queue and
-     * the top of the stack.
+     * The recursion stops when:
+     * - All characters are matched, or
+     * - A mismatch is found.
      *
-     * If all characters match, the input string is confirmed
-     * as a palindrome.
-     *
-     * This use case helps understand how FIFO and LIFO
-     * behaviors can be combined for symmetric comparison.
+     * This use case demonstrates divide-and-conquer
+     * logic using method recursion.
      *
      * @author Developer
-     * @version 6.0
+     * @version 9.0
      */
 
-        public static void main(String[] args) {
 
-            // Define the input string to validate
-            String input = "civic";
+    public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
 
-            // Create a queue to store characters in FIFO order
-            Queue<Character> queue = new LinkedList<>();
+            System.out.print("Input : ");
+            String input = scanner.nextLine();
 
-            // Create a stack to store characters in LIFO order
-            Stack<Character> stack = new Stack<>();
+            boolean result = check(input, 0, input.length() - 1);
 
-            // Insert each character into both queue and stack
-            for (char c : input.toCharArray()) {
-                queue.add(c);
-                stack.push(c);
+            System.out.println("Is Palindrome?: " + result);
+
+            scanner.close();
+        }
+
+        private static boolean check(String s, int start, int end) {
+            if (start >= end) {
+                return true;
             }
 
-            // Flag to track palindrome status
-            boolean isPalindrome = true;
-
-            // Compare characters until the queue becomes empty
-            while (!queue.isEmpty()) {
-                if (!queue.remove().equals(stack.pop())) {
-                    isPalindrome = false;
-                    break;
-                }
+            if (s.charAt(start) != s.charAt(end)) {
+                return false;
             }
 
-            System.out.println("Input : " + input);
-            System.out.println("Is Palindrome? : " + isPalindrome);
+            return check(s, start + 1, end - 1);
         }
     }
