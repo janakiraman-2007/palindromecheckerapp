@@ -27,7 +27,6 @@ public class PalindromeCheckerApp {
      * @version 7.0
      */
 
-        public static void main(String[] args) {
 
             // Define the input string
             String input = "refer";
@@ -51,7 +50,6 @@ public class PalindromeCheckerApp {
                 }
             }
 
-            System.out.println("Input : " + input);
-            System.out.println("Is Palindrome? : " + isPalindrome);
+            return check(s, start + 1, end - 1);
         }
     }
