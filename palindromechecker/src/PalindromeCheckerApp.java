@@ -1,54 +1,53 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class PalindromeCheckerApp {
     /**
-     * ==========================================================
-     * MAIN CLASS - UseCase9RecursivePalindrome
-     * ==========================================================
+     * ============================================================
+     * MAIN CLASS – UseCase7PalindromeCheckerApp
+     * ============================================================
      *
-     * Use Case 9: Recursive Palindrome Checker
+     * Use Case 7: Deque Based Optimized Palindrome Checker
      *
      * Description:
-     * This class validates a palindrome using recursion.
+     * This class validates a palindrome using a Deque
+     * (Double Ended Queue).
      *
-     * Characters are compared from the outer positions
-     * moving inward using recursive calls.
+     * Characters are inserted into the deque and then
+     * compared by removing elements from both ends:
+     * - removeFirst()
+     * - removeLast()
      *
-     * The recursion stops when:
-     * - All characters are matched, or
-     * - A mismatch is found.
+     * This avoids reversing the string and provides an
+     * efficient front-to-back comparison approach.
      *
-     * This use case demonstrates divide-and-conquer
-     * logic using method recursion.
+     * This use case demonstrates optimal bidirectional
+     * traversal using Deque.
      *
      * @author Developer
-     * @version 9.0
+     * @version 7.0
      */
 
 
-    public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
+            // Define the input string
+            String input = "refer";
 
-            System.out.print("Input : ");
-            String input = scanner.nextLine();
+            // Create a Deque to store characters
+            Deque<Character> deque = new ArrayDeque<>();
 
-            boolean result = check(input, 0, input.length() - 1);
-
-            System.out.println("Is Palindrome?: " + result);
-
-            scanner.close();
-        }
-
-        private static boolean check(String s, int start, int end) {
-            if (start >= end) {
-                return true;
+            // Add each character to the deque
+            for (char c : input.toCharArray()) {
+                deque.addLast(c);
             }
 
-            if (s.charAt(start) != s.charAt(end)) {
-                return false;
+            // Flag to track palindrome result
+            boolean isPalindrome = true;
+
+            // Continue comparison while more than one element exists
+            while (deque.size() > 1) {
+                if (!deque.removeFirst().equals(deque.removeLast())) {
+                    isPalindrome = false;
+                    break;
+                }
             }
 
             return check(s, start + 1, end - 1);
