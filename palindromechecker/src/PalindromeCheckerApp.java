@@ -1,55 +1,36 @@
 import java.util.*;
 
 public class PalindromeCheckerApp {
-    /**
-     * ============================================================
-     * MAIN CLASS – UseCase7PalindromeCheckerApp
-     * ============================================================
-     *
-     * Use Case 7: Deque Based Optimized Palindrome Checker
-     *
-     * Description:
-     * This class validates a palindrome using a Deque
-     * (Double Ended Queue).
-     *
-     * Characters are inserted into the deque and then
-     * compared by removing elements from both ends:
-     * - removeFirst()
-     * - removeLast()
-     *
-     * This avoids reversing the string and provides an
-     * efficient front-to-back comparison approach.
-     *
-     * This use case demonstrates optimal bidirectional
-     * traversal using Deque.
-     *
-     * @author Developer
-     * @version 7.0
-     */
 
+        public static void main(String[] args) {
 
             // Define the input string
-            String input = "refer";
+            String input = "level";
 
-            // Create a Deque to store characters
-            Deque<Character> deque = new ArrayDeque<>();
+            // Create a LinkedList to store characters
+            LinkedList<Character> list = new LinkedList<>();
 
-            // Add each character to the deque
+            // Add each character to the LinkedList
             for (char c : input.toCharArray()) {
-                deque.addLast(c);
+                list.add(c);
             }
 
-            // Flag to track palindrome result
+            // Flag to track palindrome state
             boolean isPalindrome = true;
 
-            // Continue comparison while more than one element exists
-            while (deque.size() > 1) {
-                if (!deque.removeFirst().equals(deque.removeLast())) {
+            // Compare characters from both ends
+            while (list.size() > 1) {
+                char first = list.removeFirst();
+                char last = list.removeLast();
+
+                if (first != last) {
                     isPalindrome = false;
                     break;
                 }
             }
 
-            return check(s, start + 1, end - 1);
+            // Output result
+            System.out.println("Input : " + input);
+            System.out.println("Is Palindrome?  : " + isPalindrome);
         }
     }
